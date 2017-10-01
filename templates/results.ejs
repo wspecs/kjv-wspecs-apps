@@ -1,0 +1,11 @@
+<section>
+  <h1>Search Results</h1>
+  <h2>KJV</h2>
+  <% for (const r of results) { %>
+  <a class="normal" href="/<%- r.bookName %>/<%- r.chapter %>#<%- r.verse%>"><%- r.text %>
+    <strong class="ref">
+      <%- r.bookName %> <%- r.chapter %>:<%- r.verse %>
+    </strong>
+  </a>
+  <% } %>
+</section>

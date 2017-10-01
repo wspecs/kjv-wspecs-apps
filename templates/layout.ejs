@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <% include partial/base_head %>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <% if (isProd) { %>
+    <link rel="stylesheet" href="/css/bundle.min.css?version=<%- version %>"/>
+  <% } else { %>
+    <link rel="stylesheet" href="/css/style.css"/>
+  <% } %>
+</head>
+<body>
+  <div class="wrapper">
+    <%- include(pageContent) %>
+  </div>
+  <script>
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      const elem = document.getElementById(hash);
+      if (elem) {
+        // After animation.
+        setTimeout(window.scrollTo(0, elem.offsetTop - 100), 1100);
+      }
+    }
+  </script>
+</body>
+</html>

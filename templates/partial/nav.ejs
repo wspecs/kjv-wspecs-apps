@@ -1,0 +1,34 @@
+<nav id="menu">
+  <ul>
+    <li><a  href="sdah">Home</a></li>
+    <li><a  href="sdah/song/<%- number || 1 %>">Sing</a></li>
+    <li>
+      <span class="opener">AZ</span>
+      <ul>
+        <% for (const song of toc.az) { %>
+        <li><a  href="sdah/az/<%- song.key %>"><%- song.key %> - <%- song.title %></a></li>
+        <% } %>
+      </ul>
+    </li>
+    <li>
+      <span class="opener">123</span>
+      <ul>
+        <% for (const song of toc.numbers) { %>
+        <li><a  href="sdah/numero/<%- song.key %>"><%- song.key %> - <%- song.title %></a></li>
+        <% } %>
+      </ul>
+    </li>
+    <li>
+      <span class="opener">Category</span>
+      <ul>
+        <% for (const cat of toc.category) { %>
+        <li>
+          <a  href="sdah/category/<%- cat.subTitle || cat.title %>">
+            <%- cat.title %><%- cat.subTitle ? ' - ' + cat.subTitle : '' %>
+          </a>
+        </li>
+        <% } %>
+      </ul>
+    </li>
+  </ul>
+</nav>

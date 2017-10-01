@@ -1,0 +1,7 @@
+<section>
+  <h1><%- book %></h1>
+  <h2>Chapter <%- verses[0].chapter %></h2>
+  <% for (const v of verses) { %>
+  <p id="<%- v.verse %>"><v><%- v.verse %></v> <%- v.text %></p>
+  <% } %>
+</section>
