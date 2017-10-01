@@ -1,0 +1,11 @@
+{
+  "col": "webapp",
+  "port": 1234,
+  "path": "",
+  "dev": {
+    "url": "http://localhost"
+  },
+  "prod": {
+    "url": "https://localhost"
+  }
+}
