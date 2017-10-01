@@ -2,6 +2,9 @@
   "col": "webapp",
   "port": 1234,
   "path": "",
+  "title": "KJV",
+  "description": "Sample App",
+  "image": "",
   "dev": {
     "url": "http://localhost"
   },
