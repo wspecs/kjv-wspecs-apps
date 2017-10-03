@@ -94,7 +94,7 @@ class KJVRoutes extends BasicRoutes {
     };
 
     if (this.hasOneChapter(query.book) && Number(query.chapter) > 1) {
-      this.redirect(res, `/${req.params.book}/1/${query.chapter}`);
+      this.redirect(res, `${req.params.book}/1/${query.chapter}`);
       return;
     }
     return KJV.find(query).sort('verse').exec().then(verses => {
@@ -114,7 +114,7 @@ class KJVRoutes extends BasicRoutes {
     const bookName = this.getBookName(bookIndex);
 
     if (this.hasOneChapter(bookIndex)) {
-      this.redirect(res, `/${req.params.book}/1`);
+      this.redirect(res, `${req.params.book}/1`);
       return;
     }
 
