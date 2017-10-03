@@ -1,9 +1,9 @@
 <section>
   <h1><%- bookName %></h1>
   <h2>KJV</h2>
-  <div class="links">
+  <div class="links big">
   <% for (let idx = 1; idx <= chapterCount; idx++) { %>
-    <a href="/<%- bookName %>/<%- idx %>">Chapter <%- idx %></a>
+    <a href="/<%- bookName %>/<%- idx %>"><%- idx %></a>
   <% } %>
   </div>
 </section>

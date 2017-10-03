@@ -81,6 +81,11 @@ a.normal:hover {
   margin: 0 4px 2px 0;
 }
 
+.links.big a {
+  font-size: 16px;
+  margin: 0 24px 12px 0;
+}
+
 .links a:hover {
   border-radius: 2px;
   border-top: 1px solid black;
