@@ -33,6 +33,20 @@ class KJVRoutes extends BasicRoutes {
     return -1;
   }
 
+  /**
+   * Compute if a book in the bible only has one chapter. Here are the books
+   * with one chapter. 
+   * - Obadiah
+   * - Philemon
+   * - 2 John
+   * - 3 John
+   * - Jude
+   */
+  private hasOneChapter(bookIndex: number) {
+    return [31, 57, 63, 64, 65].some(x => x === bookIndex);
+  }
+
+  @handlerDecorator
   searchPage(req, res) {
     const query = (req.params.query || '').trim();
     const start = Number(req.params.start) || 0;
@@ -55,6 +69,7 @@ class KJVRoutes extends BasicRoutes {
   };
 
 
+  @handlerDecorator
   versePage(req, res) {
     const query = {
       book: Number(req.params.book) || this.getBookNumber(req.params.book),
@@ -71,11 +86,17 @@ class KJVRoutes extends BasicRoutes {
     })
   };
 
+  @handlerDecorator
   chapterPage(req, res) {
     const query = {
       book: Number(req.params.book) || this.getBookNumber(req.params.book),
       chapter: req.params.chapter,
     };
+
+    if (this.hasOneChapter(query.book) && Number(query.chapter) > 1) {
+      this.redirect(res, `/${req.params.book}/1/${query.chapter}`);
+      return;
+    }
     return KJV.find(query).sort('verse').exec().then(verses => {
       const page = {
         pageContent: 'chapter',
@@ -86,10 +107,16 @@ class KJVRoutes extends BasicRoutes {
     })
   };
 
+  @handlerDecorator
   bookPage(req, res) {
     const bookIndex = Number(req.params.book) || this.getBookNumber(
       req.params.book);
     const bookName = this.getBookName(bookIndex);
+
+    if (this.hasOneChapter(bookIndex)) {
+      this.redirect(res, `/${req.params.book}/1`);
+      return;
+    }
 
     const page = {
       bookIndex,
@@ -100,6 +127,7 @@ class KJVRoutes extends BasicRoutes {
     this.renderLayout(page, res.cache);
   };
 
+  @handlerDecorator
   homePage(req, res) {
     const page = {
       pageContent: 'home',

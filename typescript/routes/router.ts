@@ -58,11 +58,15 @@ export class BasicRoutes {
   }
 
   public renderLayout(page, renderFn) {
-    this.renderPage(this.templatePath + 'layout', page, renderFn);
+    return this.renderPage(this.templatePath + 'layout', page, renderFn);
+  }
+
+  public redirect(res, url) {
+    res.redirect('/' + this.templatePath + url);
   }
 
   public renderPage(path: string, page, renderFn) {
-    renderFn(path, page);
+    return renderFn(path, page);
   }
 
   public get() {
